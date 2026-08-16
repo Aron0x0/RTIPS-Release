@@ -1,7 +1,14 @@
-{
-    "product": "RTIPSKiosk",
-    "version": "1.0.0",
-    "build": 1,
-    "release": "RTIPSKiosk-v1.0.0",
-    "download": "..."
+﻿{
+    "product":  "RTIPSKiosk",
+    "version":  "1.0.0",
+    "versionTag":  "v1.0.0",
+    "build":  6,
+    "buildString":  "006",
+    "releaseTag":  "RTIPSKiosk-v1.0.0",
+    "fileName":  "RTIPSKiosk_v1.0.0-build006_2026-08-16_12-18-30-PM.rar",
+    "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.0/RTIPSKiosk_v1.0.0-build006_2026-08-16_12-18-30-PM.rar",
+    "sha256":  "88fedaeb640c92fad7d862dcedd325a793fc5ab732b718b062425b48ecf39efb",
+    "sizeBytes":  232729963,
+    "sizeMB":  221.95,
+    "publishedAt":  "2026-08-16T12:19:13+08:00"
 }
