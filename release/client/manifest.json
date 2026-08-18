@@ -2,13 +2,13 @@
     "product":  "RTIPSKiosk",
     "version":  "1.0.0",
     "versionTag":  "v1.0.0",
-    "build":  6,
-    "buildString":  "006",
+    "build":  10,
+    "buildString":  "010",
     "releaseTag":  "RTIPSKiosk-v1.0.0",
-    "fileName":  "RTIPSKiosk_v1.0.0-build006_2026-08-16_12-18-30-PM.rar",
-    "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.0/RTIPSKiosk_v1.0.0-build006_2026-08-16_12-18-30-PM.rar",
-    "sha256":  "88fedaeb640c92fad7d862dcedd325a793fc5ab732b718b062425b48ecf39efb",
-    "sizeBytes":  232729963,
-    "sizeMB":  221.95,
-    "publishedAt":  "2026-08-16T12:19:13+08:00"
+    "fileName":  "RTIPSKiosk_v1.0.0-build010_2026-08-17_22-00-39.rar",
+    "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.0/RTIPSKiosk_v1.0.0-build010_2026-08-17_22-00-39.rar",
+    "sha256":  "7d8460b7293e10aa94d9e7cde84a6b096c10960790353600bc785529f8f65066",
+    "sizeBytes":  80089216,
+    "sizeMB":  76.38,
+    "publishedAt":  "2026-08-17T22:00:58+08:00"
 }
