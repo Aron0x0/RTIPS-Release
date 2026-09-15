@@ -1,14 +1,14 @@
 ﻿{
     "product":  "RTIPSServer",
-    "version":  "1.0.19",
-    "versionTag":  "v1.0.19",
+    "version":  "1.0.21",
+    "versionTag":  "v1.0.21",
     "build":  1,
     "buildString":  "001",
-    "releaseTag":  "RTIPSServer-v1.0.19",
-    "fileName":  "RTIPSServer_v1.0.19-build001_2026-08-30_10-14-34.rar",
-    "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.19/RTIPSServer_v1.0.19-build001_2026-08-30_10-14-34.rar",
-    "sha256":  "02e6c0801ed23fedc6d6711864e817b8c356fc1fcecf31150cec9cb9e012b67f",
-    "sizeBytes":  57675671,
-    "sizeMB":  55,
-    "publishedAt":  "2026-08-30T10:14:47+08:00"
+    "releaseTag":  "RTIPSServer-v1.0.21",
+    "fileName":  "RTIPSServer_v1.0.21-build001_2026-09-15_11-00-11.rar",
+    "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.21/RTIPSServer_v1.0.21-build001_2026-09-15_11-00-11.rar",
+    "sha256":  "31e22766fcafd1f058c4668c83882ab813e9e97ef8ff0cdfb43c63673ff03f66",
+    "sizeBytes":  57858584,
+    "sizeMB":  55.18,
+    "publishedAt":  "2026-09-15T11:00:26+08:00"
 }
