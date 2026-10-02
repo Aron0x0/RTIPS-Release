@@ -672,7 +672,7 @@ SOFTWARE.
 
 <div align="center">
 
-Made with ❤️ for Science City of Muñoz Senior High School and beyond.
+Made For Academic & Research Evaluation Only • © 2026
 
 [🐛 Report a Bug](https://github.com/Aron0x0/RTIPS-Release/issues) · [💡 Request a Feature](https://github.com/Aron0x0/RTIPS-Release/issues) · [📦 Latest Release](https://github.com/Aron0x0/RTIPS-Release/releases)
 
