@@ -38,6 +38,7 @@
 7. [Documentation](#-documentation)
 8. [Troubleshooting](#-troubleshooting)
 9. [Official Companion Guide](#-official-companion-guide)
+   - [CSV Bulk Import](#csv-bulk-import)
 10. [Contributing](#-contributing)
 11. [Reference](#-reference)
 12. [Licensing](#-licensing)
@@ -533,11 +534,106 @@ Tokens are one-time use. Once scanned and authenticated at the kiosk, they are m
 
 ### CSV Bulk Import
 
-To import many students or employees at once:
-1. Prepare a CSV file matching the import template (see `RTIPSServer/student.csv` or `employee.csv` for the column format).
-2. In RTIPSAdmin, go to **User Directory → Import CSV**.
-3. Select your CSV file and confirm the import.
-4. Review the import results — any rows with errors are shown with the specific validation failure.
+RTIPS supports high-volume batch import of students, employees, and unified directories via standard CSV format.
+
+#### How to Import:
+1. In **RTIPSAdmin**, navigate to **User Directory**.
+2. Click **Import CSV** in the action bar.
+3. Select your prepared CSV file (`.csv`) and confirm.
+4. The system validates required headers, formats dates (`YYYY-MM-DD` or flexible dates), hashes PINs, assigns QR tokens, and inserts records into PostgreSQL inside safe transaction savepoints.
+5. A summary dialog displays the count of imported records along with detailed row error messages if any row fails validation.
+
+---
+
+#### 1. Student CSV Specification (`students_test.csv`)
+
+Used for bulk importing student records.
+
+##### Header Definition:
+```csv
+person_type,student_id_number,last_name,first_name,middle_name,birthday,gender,year_level,course_code,course_name,section,address_province,address_city,address_barangay,address_other_info,student_pin,student_qr_token,photo_path,signature_path,is_active,is_printed
+```
+
+##### Field Breakdown:
+| Column | Required | Type / Format | Description & Example |
+|---|---|---|---|
+| `person_type` | Optional | String | Set to `student` |
+| `student_id_number` | **Yes** | Alphanumeric | Unique student ID / LRN (e.g. `202`, `100-00-0001`) |
+| `last_name` | **Yes** | Text | Student family name (e.g. `Reyes`) |
+| `first_name` | **Yes** | Text | Student given name (e.g. `Paolo`) |
+| `middle_name` | No | Text | Middle name (e.g. `Ramos`) |
+| `birthday` | No | `YYYY-MM-DD` | Birth date (e.g. `2006-05-08`) |
+| `gender` | No | Text | `Male` or `Female` |
+| `year_level` | No | Integer | Academic year level (`1` to `12` or `Kinder`) |
+| `course_code` | No | Text | Academic program code (e.g. `BSIT`, `BSHM`, `BSED`) |
+| `course_name` | No | Text | Full course title (e.g. `Bachelor of Science in Information Technology`) |
+| `section` | No | Text | Section letter or code (e.g. `A`, `B`) |
+| `address_province` | No | Text | Province name (e.g. `Bulacan`) |
+| `address_city` | No | Text | City or municipality (e.g. `Meycauayan City`) |
+| `address_barangay` | No | Text | Barangay / district (e.g. `Liang`) |
+| `address_other_info` | No | Text | Street, block, lot, purok details (e.g. `Purok 3`) |
+| `student_pin` | No | 4-6 Digits | PIN used for self-service kiosk login (e.g. `9595`, default: `0000`) |
+| `student_qr_token` | No | Text | Optional pre-assigned QR token (auto-generated if empty) |
+| `photo_path` | No | Path / Filename | Optional initial photo file path |
+| `signature_path` | No | Path / Filename | Optional initial digital signature file path |
+| `is_active` | No | `0` or `1` | `1` = Active account (default), `0` = Inactive / Disabled |
+| `is_printed` | No | `0` or `1` | `0` = Pending / Not printed (default), `1` = Already printed |
+
+##### Example Rows:
+```csv
+person_type,student_id_number,last_name,first_name,middle_name,birthday,gender,year_level,course_code,course_name,section,address_province,address_city,address_barangay,address_other_info,student_pin,student_qr_token,photo_path,signature_path,is_active,is_printed
+student,202,Reyes,Paolo,Ramos,2006-05-08,Male,1,BSHM,Bachelor of Science in Hospitality Management,B,Bulacan,Meycauayan City,Liang,,9595,,,,1,0
+student,203,Garcia,Mary Joy,Dela,2005-08-16,Female,2,BSED,Bachelor of Secondary Education,A,Bulacan,Baliuag,San Agustin,Purok 3,9042,,,,1,0
+student,204,Villanueva,Grace,Dela,2008-04-04,Female,3,BSCRIM,Bachelor of Science in Criminology,A,Bulacan,San Jose Del Monte,Liang,,1878,,,,1,1
+```
+
+---
+
+#### 2. Employee CSV Specification (`employees_test.csv`)
+
+Used for bulk importing faculty, administrative, and operations personnel.
+
+##### Header Definition:
+```csv
+person_type,employee_id_number,last_name,first_name,middle_name,birthday,gender,department,position,address_province,address_city,address_barangay,address_other_info,employee_pin,photo_path,signature_path,employee_qr_token,tin,gsis,pagibig,philhealth,prclicense,blood_type,is_active,is_printed
+```
+
+##### Field Breakdown:
+| Column | Required | Type / Format | Description & Example |
+|---|---|---|---|
+| `person_type` | Optional | String | Set to `employee` |
+| `employee_id_number` | **Yes** | Alphanumeric | Unique Employee ID (e.g. `01-001`, `EMP-2026`) |
+| `last_name` | **Yes** | Text | Employee family name (e.g. `Cruz`) |
+| `first_name` | **Yes** | Text | Employee given name (e.g. `Eduardo`) |
+| `middle_name` | No | Text | Middle name (e.g. `Garcia`) |
+| `birthday` | No | `YYYY-MM-DD` | Birth date (e.g. `1999-04-08`) |
+| `gender` | No | Text | `Male` or `Female` |
+| `department` | No | Text | Department or unit (e.g. `Human Resources`, `IT Department`) |
+| `position` | No | Text | Job title / designation (e.g. `Supervisor`, `IT Officer`) |
+| `address_province` | No | Text | Province name (e.g. `Bulacan`) |
+| `address_city` | No | Text | City or municipality (e.g. `Angeles City`) |
+| `address_barangay` | No | Text | Barangay / district (e.g. `Namayan`) |
+| `address_other_info` | No | Text | Street, block, subdivision info (e.g. `Blk 3 Lot 20`) |
+| `employee_pin` | No | 4-6 Digits | PIN used for self-service kiosk login (e.g. `1234`, default: `0000`) |
+| `photo_path` | No | Path / Filename | Optional initial photo file path |
+| `signature_path` | No | Path / Filename | Optional initial signature file path |
+| `employee_qr_token` | No | Text | Optional pre-assigned QR token (auto-generated if empty) |
+| `tin` | No | Text | Taxpayer Identification Number (e.g. `617-716-127`) |
+| `gsis` | No | Text | GSIS BP / ID Number (e.g. `81 4257-9928`) |
+| `pagibig` | No | Text | Pag-IBIG MID Number (e.g. `7873-4611-8359`) |
+| `philhealth` | No | Text | PhilHealth Identification Number (e.g. `85-398704996-1`) |
+| `prclicense` | No | Text | Professional Regulation Commission license (e.g. `3678638-99`) |
+| `blood_type` | No | Text | Blood type (`A+`, `A-`, `B+`, `B-`, `AB+`, `AB-`, `O+`, `O-`) |
+| `is_active` | No | `0` or `1` | `1` = Active employee (default), `0` = Inactive |
+| `is_printed` | No | `0` or `1` | `0` = Pending / Not printed (default), `1` = Already printed |
+
+##### Example Rows:
+```csv
+person_type,employee_id_number,last_name,first_name,middle_name,birthday,gender,department,position,address_province,address_city,address_barangay,address_other_info,employee_pin,photo_path,signature_path,employee_qr_token,tin,gsis,pagibig,philhealth,prclicense,blood_type,is_active,is_printed
+employee,01-001,Cruz,Eduardo,Garcia,1999-04-08,Male,Human Resources,Supervisor,Bulacan,Angeles City,Namayan,,,1234,,,,617-716-127,81 4257-9928,7873-4611-8359,85-398704996-1,3678638-99,O+,1,0
+employee,01-002,Ramos,Carmela,Garcia,2002-12-15,Female,Library Services,Staff,Bulacan,San Jose Del Monte,Longos,,,2345,,,,649-227-487,20 5803-6925,4150-2139-1750,94-344703907-5,4905582-22,O+,1,1
+employee,01-003,Gonzales,Bianca,Reyes,1994-08-13,Female,Library Services,Accountant,Bulacan,Angeles City,San Agustin,Blk 3 Lot 20,3456,,,,376-755-804,81 4598-6313,1916-4752-1525,50-530747414-5,,AB-,1,0
+```
 
 ---
 
