@@ -7,8 +7,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#-licensing)
 [![Qt](https://img.shields.io/badge/Qt-6.10%2B-41CD52?logo=qt)](https://www.qt.io/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%2B-336791?logo=postgresql)](https://www.postgresql.org/)
-[![Server v1.0.28](https://img.shields.io/badge/Server-v1.0.28-informational)](https://github.com/Aron0x0/RTIPS-Release/releases)
-[![Client v1.0.28](https://img.shields.io/badge/Kiosk-v1.0.28-informational)](https://github.com/Aron0x0/RTIPS-Release/releases)
+[![Server v1.0.40](https://img.shields.io/badge/Server-v1.0.40-informational)](https://github.com/Aron0x0/RTIPS-Release/releases)
+[![Client v1.0.40](https://img.shields.io/badge/Kiosk-v1.0.40-informational)](https://github.com/Aron0x0/RTIPS-Release/releases)
 
 </div>
 
@@ -68,20 +68,20 @@ RTIPS is a **two-component system** designed to modernize ID card issuance in sc
 ## 🏗️ Architecture
 
 ```
-┌─────────────────────────┐        PostgreSQL (shared DB)        ┌─────────────────────────┐
+┌─────────────────────────┐     HTTPS REST API (Port 8080)       ┌─────────────────────────┐
 │     RTIPSServer          │ ◄───────────────────────────────►   │     RTIPSKiosk           │
-│  (Administrator App)     │                                      │  (Self-Service Kiosk)    │
-│                          │                                      │                          │
-│  • User Directory        │                                      │  • QR / PIN Login        │
+│  (Administrator App)     │     • TLS + RFC 6125 Verification   │  (Thin-Client Kiosk)    │
+│                          │     • Token-Based Auth & Anti-Replay│                          │
+│  • User Directory        │     • PII Minimization Response     │  • QR / PIN Login        │
 │  • Template Designer     │                                      │  • Photo Capture         │
 │  • QR Token Issuance     │                                      │  • Signature Capture     │
 │  • Print Queue Monitor   │                                      │  • ID Preview            │
-│  • Audit / Print Logs    │                                      │  • Print & Mark Printed  │
-│  • Settings & Policies   │                                      │  • Auto-Update Support   │
+│  • Audit / Print Logs    │                                      │  • Direct Print Engine   │
+│  • Central SQLite/Postgres                                      │  • Auto-Update Support   │
 └─────────────────────────┘                                      └─────────────────────────┘
 ```
 
-Both applications connect to a **shared PostgreSQL database**. The server runs on an administrator workstation; the kiosk runs on a dedicated self-service machine.
+The server hosts the central database and manages administration, while kiosk terminals operate as secure thin clients communicating strictly over the authenticated HTTPS REST API. Kiosks do not connect directly to the central database, preventing credential exposure and database surface attacks.
 
 ---
 
@@ -317,20 +317,21 @@ Each release folder (`release/server/` and `release/client/`) contains a `manife
 // release/server/manifest.json
 {
   "product":      "RTIPSServer",
-  "version":      "v1.0.28",
+  "version":      "1.0.40",
   "build":        1,
   "buildString":  "001",
-  "releaseTag":   "RTIPSServer-vv1.0.28",
-  "fileName":     "RTIPSServer_vv1.0.28-build001_2026-10-02_23-12-36.rar",
+  "releaseTag":   "RTIPSServer-v1.0.40",
+  "fileName":     "RTIPSServer_v1.0.40-build001_2026-10-28_23-39-46.rar",
   "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/...",
-  "sha256":       "3c28c74220bfb335af60ed3b8d14f949a31deaa2fec823e716da79faa5f4a3eb",
-  "sizeBytes":    57999077,
-  "sizeMB":       55.31,
-  "publishedAt":  "2026-10-02T23:12:49+08:00"
+  "sha256":       "8963decf86aa5e55315f39937d259b0a0b58ffa238ec5dc7b5922ad75c621917",
+  "signature":    "996ca8253a0c0d4279b3e19e76dbed9fd8913f10...0605f2149446e800",
+  "sizeBytes":    62520994,
+  "sizeMB":       59.62,
+  "publishedAt":  "2026-10-28T23:39:56+08:00"
 }
 ```
 
-The manifest is consumed by the **auto-update mechanism** in both applications to detect and download new releases.
+The manifest is consumed by the **auto-update mechanism** in both applications to detect and download new releases. Manifest authenticity is strictly verified using RFC 8032 Ed25519 digital signatures.
 
 ---
 
