@@ -1,15 +1,15 @@
 {
     "build": 1,
     "buildString": "001",
-    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build001_2026-10-28_23-39-46.rar",
-    "fileName": "RTIPSServer_v1.0.40-build001_2026-10-28_23-39-46.rar",
+    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build001_2026-11-21_23-39-03.rar",
+    "fileName": "RTIPSServer_v1.0.40-build001_2026-11-21_23-39-03.rar",
     "product": "RTIPSServer",
-    "publishedAt": "2026-10-28T23:39:56+08:00",
+    "publishedAt": "2026-11-21T23:39:34+08:00",
     "releaseTag": "RTIPSServer-v1.0.40",
-    "sha256": "8963decf86aa5e55315f39937d259b0a0b58ffa238ec5dc7b5922ad75c621917",
-    "signature": "996ca8253a0c0d4279b3e19e76dbed9fd8913f10b4c0e750964a933c0127bd0ae6a82d6853dff7e173e3b5e4af20d8c0b6ccbbca3b93bbf00605f2149446e800",
-    "sizeBytes": 62520994,
-    "sizeMB": 59.62,
+    "sha256": "ff5284e41c12a8602b605034ecd0479c30618c9a02b160a93dade4d63b0935bf",
+    "signature": "802bb00f9c95d6c2fec0b58a16d50a82ed105ad565543f921f7f724c6550a6ad522dda461b2c32f6821e423318ad5d79c91e7d8dde1882410672ebade4cf3009",
+    "sizeBytes": 62938851,
+    "sizeMB": 60.02,
     "version": "1.0.40",
     "versionTag": "v1.0.40"
 }
