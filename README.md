@@ -351,26 +351,26 @@ windeployqt --qmldir ui build\RTIPSKiosk.exe
 Each release folder (`release/server/` and `release/client/`) contains a cryptographically signed `manifest.json` describing the artifact:
 
 ```jsonc
-// release/server/manifest.json (v1.0.40 Build 007)
+// release/server/manifest.json (v1.0.40 Build 009)
 {
   "product":      "RTIPSServer",
   "version":      "1.0.40",
-  "build":        8,
-  "buildString":  "008",
+  "build":        9,
+  "buildString":  "009",
   "releaseTag":   "RTIPSServer-v1.0.40",
-  "fileName":     "RTIPSServer_v1.0.40-build008_2026-11-22_14-37-41.zip",
-  "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build008_2026-11-22_14-37-41.zip",
-  "sha256":       "920855291b6fda1b4189d84c63ce16f1b5381c289409d46d7ec32084768c0d52",
-  "sizeBytes":    79829120,
-  "sizeMB":       76.13,
+  "fileName":     "RTIPSServer_v1.0.40-build009_2026-11-22_16-49-28.zip",
+  "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build009_2026-11-22_16-49-28.zip",
+  "sha256":       "eef5f09235521a620d4c526d235a9d9ed770fc1b3eb75f95aeb3b372672da513",
+  "sizeBytes":    79838949,
+  "sizeMB":       76.14,
   "sourceBranch": "feature/admin",
-  "sourceCommit": "388d066dc7cfbfd4704fe1d27c4c604f27a9c38d",
-  "signature":    "9559b1ab74ef4c12...019c4d7ceed2280e",
+  "sourceCommit": "ab09598647780d56ebbb916e57661424f2818fed",
+  "signature":    "605b971c15de394b...64cdd9a703ecf90d",
   "dualPackage": {
-    "fileName":    "RTIPSServer_v1.0.40-build008_2026-11-22_14-37-41.rar",
-    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build008_2026-11-22_14-37-41.rar",
-    "sha256":      "be61cbff45495c72c806467216237496b8a7f25646be58dade14560cb2081ea6",
-    "sizeBytes":   63082134
+    "fileName":    "RTIPSServer_v1.0.40-build009_2026-11-22_16-49-28.rar",
+    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build009_2026-11-22_16-49-28.rar",
+    "sha256":      "c74b5d3606b3e80b3b1aabaeda43735afa5c3f8bc7eda6430c19ce522120c3ee",
+    "sizeBytes":   63104004
   }
 }
 ```
