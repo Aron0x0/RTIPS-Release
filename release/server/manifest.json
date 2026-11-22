@@ -1,23 +1,23 @@
 {
-    "build": 9,
-    "buildString": "009",
-    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build009_2026-11-22_16-49-28.zip",
+    "build": 10,
+    "buildString": "010",
+    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build010_2026-11-22_19-28-32.zip",
     "dualPackage": {
-        "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build009_2026-11-22_16-49-28.rar",
-        "fileName": "RTIPSServer_v1.0.40-build009_2026-11-22_16-49-28.rar",
-        "sha256": "c74b5d3606b3e80b3b1aabaeda43735afa5c3f8bc7eda6430c19ce522120c3ee",
-        "sizeBytes": 63104004
+        "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build010_2026-11-22_19-28-32.rar",
+        "fileName": "RTIPSServer_v1.0.40-build010_2026-11-22_19-28-32.rar",
+        "sha256": "64cbc9debbd119d44e4e8b4763facc38fd8f1014f82001a2882e330bbc9d0529",
+        "sizeBytes": 63122258
     },
-    "fileName": "RTIPSServer_v1.0.40-build009_2026-11-22_16-49-28.zip",
+    "fileName": "RTIPSServer_v1.0.40-build010_2026-11-22_19-28-32.zip",
     "product": "RTIPSServer",
-    "publishedAt": "2026-11-22T16:50:01+08:00",
+    "publishedAt": "2026-11-22T19:29:01+08:00",
     "releaseTag": "RTIPSServer-v1.0.40",
-    "sha256": "eef5f09235521a620d4c526d235a9d9ed770fc1b3eb75f95aeb3b372672da513",
-    "signature": "605b971c15de394bc6167c304f2f7561e0dc4e044f644033ce9e18067a563e0b1553cdfbafbc77b6eb63c944810dfe2d11f5b9606618618764cdd9a703ecf90d",
-    "sizeBytes": 79838949,
-    "sizeMB": 76.14,
+    "sha256": "ee9738fb3880cdae463a802dca4af8d508ebec6b47899e2ccd9bc122a1c228bd",
+    "signature": "158e17f8f2561487e3f34f8a0220fb6e9cdfbb8de8d90038bc3cd3d73fc95b8fa7f22298925c96e810d03a24c40065e414ffac2315a436b483a3fb0e29447b0a",
+    "sizeBytes": 79877049,
+    "sizeMB": 76.18,
     "sourceBranch": "feature/admin",
-    "sourceCommit": "ab09598647780d56ebbb916e57661424f2818fed",
+    "sourceCommit": "5d450e49b88d79b8610f34a3d45255d599016f98",
     "version": "1.0.40",
     "versionTag": "v1.0.40"
 }
