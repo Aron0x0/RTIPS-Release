@@ -111,8 +111,8 @@ Download the package matching your deployment role:
 
 | Component | Package Format | Download | Size | SHA-256 |
 |---|---|---|---|---|
-| **RTIPSServer v1.0.40** (Admin) | **ZIP (Primary)** | [RTIPSServer_v1.0.40-build014.zip](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build014_2026-11-22_23-35-56.zip) | 76.21 MB | `ec0c7b1c9d884ca1a1584720940f3f051a9dc5577d4145c72e1e78024399babc` |
-| RTIPSServer v1.0.40 (Admin) | RAR (Dual) | [RTIPSServer_v1.0.40-build014.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build014_2026-11-22_23-35-56.rar) | 60.22 MB | `ee5ae71d0083785e86a712bbb92458ad28c525d5a9efba75e67bbc666f0a5999` |
+| **RTIPSServer v1.0.40** (Admin) | **ZIP (Primary)** | [RTIPSServer_v1.0.40-build015.zip](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build015_2026-11-22_23-58-29.zip) | 76.22 MB | `de11032a5b2972cc856fc7a00f5fb41c51c3ed54a34e08cc5eef248ddf9ecc07` |
+| RTIPSServer v1.0.40 (Admin) | RAR (Dual) | [RTIPSServer_v1.0.40-build015.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build015_2026-11-22_23-58-29.rar) | 60.23 MB | `93b25655ef20716ba4c0cda6b0c2c5b9b4d2ca83ecf58fe3e39e32e76cb3d6ae` |
 | **RTIPSKiosk v1.0.40** (Client) | **ZIP (Primary)** | [RTIPSKiosk_v1.0.40-build007.zip](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build007_2026-11-22_22-17-45.zip) | 88.62 MB | `307123605f65679f0b1140fd15d0e3ff2504581c1d25543b27014be8b4da9860` |
 | RTIPSKiosk v1.0.40 (Client) | RAR (Dual) | [RTIPSKiosk_v1.0.40-build007.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build007_2026-11-22_22-17-45.rar) | 76.85 MB | `ca9d035ad33eb329833222aa820b6e37dcbdd14b1c6f4d441024baa0452735f1` |
 
@@ -351,26 +351,26 @@ windeployqt --qmldir ui build\RTIPSKiosk.exe
 Each release folder (`release/server/` and `release/client/`) contains a cryptographically signed `manifest.json` describing the artifact:
 
 ```jsonc
-// release/server/manifest.json (v1.0.40 Build 014)
+// release/server/manifest.json (v1.0.40 Build 015)
 {
   "product":      "RTIPSServer",
   "version":      "1.0.40",
-  "build":        14,
-  "buildString":  "014",
+  "build":        15,
+  "buildString":  "015",
   "releaseTag":   "RTIPSServer-v1.0.40",
-  "fileName":     "RTIPSServer_v1.0.40-build014_2026-11-22_23-35-56.zip",
-  "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build014_2026-11-22_23-35-56.zip",
-  "sha256":       "ec0c7b1c9d884ca1a1584720940f3f051a9dc5577d4145c72e1e78024399babc",
-  "sizeBytes":    79915645,
-  "sizeMB":       76.21,
+  "fileName":     "RTIPSServer_v1.0.40-build015_2026-11-22_23-58-29.zip",
+  "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build015_2026-11-22_23-58-29.zip",
+  "sha256":       "de11032a5b2972cc856fc7a00f5fb41c51c3ed54a34e08cc5eef248ddf9ecc07",
+  "sizeBytes":    79921437,
+  "sizeMB":       76.22,
   "sourceBranch": "feature/admin",
-  "sourceCommit": "ef90c9234aef3037e142d9d0f03a687c9124c309",
-  "signature":    "4722431e6d8b2908...9b56e2ef4ef87f0d",
+  "sourceCommit": "360d99e3303606b5154349a08b0ae5ddff6a6aeb",
+  "signature":    "c72b4000fc9c8989...b74c9908e7aeb205",
   "dualPackage": {
-    "fileName":    "RTIPSServer_v1.0.40-build014_2026-11-22_23-35-56.rar",
-    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build014_2026-11-22_23-35-56.rar",
-    "sha256":      "ee5ae71d0083785e86a712bbb92458ad28c525d5a9efba75e67bbc666f0a5999",
-    "sizeBytes":   63147236
+    "fileName":    "RTIPSServer_v1.0.40-build015_2026-11-22_23-58-29.rar",
+    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build015_2026-11-22_23-58-29.rar",
+    "sha256":      "93b25655ef20716ba4c0cda6b0c2c5b9b4d2ca83ecf58fe3e39e32e76cb3d6ae",
+    "sizeBytes":   63152715
   }
 }
 ```
