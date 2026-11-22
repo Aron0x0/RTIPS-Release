@@ -111,8 +111,8 @@ Download the package matching your deployment role:
 
 | Component | Package Format | Download | Size | SHA-256 |
 |---|---|---|---|---|
-| **RTIPSServer v1.0.40** (Admin) | **ZIP (Primary)** | [RTIPSServer_v1.0.40-build006.zip](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build006_2026-11-22_11-30-58.zip) | 76.10 MB | `f9eea7585f5cb5a2a4f0e85329cd2acda639c5d1c793bd126d1bd93c682c208b` |
-| RTIPSServer v1.0.40 (Admin) | RAR (Dual) | [RTIPSServer_v1.0.40-build006.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build006_2026-11-22_11-30-58.rar) | 60.14 MB | `f79ffa4ddf6a26237fe2774c1d8a4fbbcd3d34c39a09827e0d320e3314e61678` |
+| **RTIPSServer v1.0.40** (Admin) | **ZIP (Primary)** | [RTIPSServer_v1.0.40-build007.zip](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build007_2026-11-22_12-21-22.zip) | 76.12 MB | `53bead5c96196e8e7c7cc57f62a07c939fc56a4bc23f0673c2737f472fd5e8ad` |
+| RTIPSServer v1.0.40 (Admin) | RAR (Dual) | [RTIPSServer_v1.0.40-build007.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build007_2026-11-22_12-21-22.rar) | 60.16 MB | `03e635e90e8eea8c30a12cf2746b8e967eabd859d1886eea7a890badd2c71b7d` |
 | **RTIPSKiosk v1.0.40** (Client) | **ZIP (Primary)** | [RTIPSKiosk_v1.0.40-build003.zip](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build003_2026-11-22_09-59-26.zip) | 88.61 MB | `4b72da3f557b855563336887ed3aca6306037a478cdfa587644a54a83566e1b8` |
 | RTIPSKiosk v1.0.40 (Client) | RAR (Dual) | [RTIPSKiosk_v1.0.40-build003.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build003_2026-11-22_09-59-26.rar) | 76.85 MB | `c984ae7d844815ec02430f9559d7cc2c8af20e81d4a750e4278f7da45a4723e7` |
 
@@ -351,26 +351,26 @@ windeployqt --qmldir ui build\RTIPSKiosk.exe
 Each release folder (`release/server/` and `release/client/`) contains a cryptographically signed `manifest.json` describing the artifact:
 
 ```jsonc
-// release/server/manifest.json (v1.0.40 Build 006)
+// release/server/manifest.json (v1.0.40 Build 007)
 {
   "product":      "RTIPSServer",
   "version":      "1.0.40",
-  "build":        6,
-  "buildString":  "006",
+  "build":        7,
+  "buildString":  "007",
   "releaseTag":   "RTIPSServer-v1.0.40",
-  "fileName":     "RTIPSServer_v1.0.40-build006_2026-11-22_11-30-58.zip",
-  "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/...",
-  "sha256":       "f9eea7585f5cb5a2a4f0e85329cd2acda639c5d1c793bd126d1bd93c682c208b",
-  "sizeBytes":    79794015,
-  "sizeMB":       76.10,
+  "fileName":     "RTIPSServer_v1.0.40-build007_2026-11-22_12-21-22.zip",
+  "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build007_2026-11-22_12-21-22.zip",
+  "sha256":       "53bead5c96196e8e7c7cc57f62a07c939fc56a4bc23f0673c2737f472fd5e8ad",
+  "sizeBytes":    79817111,
+  "sizeMB":       76.12,
   "sourceBranch": "feature/admin",
-  "sourceCommit": "f6990ceab9b5ea2351533276a11d5fe720001a1a",
-  "signature":    "dade8eb58d6cb219...5db6a81c4c236000",
+  "sourceCommit": "02e3cd4d90ae852baee85c98dab23e00d4760e72",
+  "signature":    "37deed5c7a050e92...2fe59b2df7a1120f",
   "dualPackage": {
-    "fileName":    "RTIPSServer_v1.0.40-build006_2026-11-22_11-30-58.rar",
-    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/...",
-    "sha256":      "f79ffa4ddf6a26237fe2774c1d8a4fbbcd3d34c39a09827e0d320e3314e61678",
-    "sizeBytes":   63060793
+    "fileName":    "RTIPSServer_v1.0.40-build007_2026-11-22_12-21-22.rar",
+    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build007_2026-11-22_12-21-22.rar",
+    "sha256":      "03e635e90e8eea8c30a12cf2746b8e967eabd859d1886eea7a890badd2c71b7d",
+    "sizeBytes":   63077135
   }
 }
 ```
