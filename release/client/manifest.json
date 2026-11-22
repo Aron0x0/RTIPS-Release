@@ -1,15 +1,23 @@
 {
-    "build": 1,
-    "buildString": "001",
-    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build001_2026-11-21_23-45-10.rar",
-    "fileName": "RTIPSKiosk_v1.0.40-build001_2026-11-21_23-45-10.rar",
+    "build": 2,
+    "buildString": "002",
+    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build002_2026-11-22_09-15-53.zip",
+    "dualPackage": {
+        "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build002_2026-11-22_09-15-53.rar",
+        "fileName": "RTIPSKiosk_v1.0.40-build002_2026-11-22_09-15-53.rar",
+        "sha256": "ba6b50f75d4086d5bda77ea8ac634cd4f28ffea318a4f07dc8ff633c07badc1e",
+        "sizeBytes": 80580787
+    },
+    "fileName": "RTIPSKiosk_v1.0.40-build002_2026-11-22_09-15-53.zip",
     "product": "RTIPSKiosk",
-    "publishedAt": "2026-11-21T23:45:39+08:00",
+    "publishedAt": "2026-11-22T09:16:23+08:00",
     "releaseTag": "RTIPSKiosk-v1.0.40",
-    "sha256": "dd32f0602f7966265aade1d0e385a380ea6e80af2bf56f023cdae8657b6e71ff",
-    "signature": "dc3df48aecf8f193bcc2d327acec282c7c6dc5f9cb8bab199a4c546f35c96a69b33e6bbed1bab019ef0b0ed7b6bb7edf9adefe463535e109ab6ef6e50571110a",
-    "sizeBytes": 80580783,
-    "sizeMB": 76.85,
+    "sha256": "f716982110524d61b95530fd066f3fbdf242e92c4b19b3bbf82f56215c5bdb8d",
+    "signature": "0452397f3b8ece33975e7d5ae23960379c37c064ec8070bbdd9f5a8c987437b24d32ad3fd4b4338cf1be08fa5a67766422edb66b7d46e409b0c1a0aba3371700",
+    "sizeBytes": 92918704,
+    "sizeMB": 88.61,
+    "sourceBranch": "feature/client",
+    "sourceCommit": "2e55e31ddc68d92ba84773c8c9ba60034c2a8c98",
     "version": "1.0.40",
     "versionTag": "v1.0.40"
 }
