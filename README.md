@@ -9,6 +9,7 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%2B-336791?logo=postgresql)](https://www.postgresql.org/)
 [![Server v1.0.40](https://img.shields.io/badge/Server-v1.0.40-informational)](https://github.com/Aron0x0/RTIPS-Release/releases)
 [![Client v1.0.40](https://img.shields.io/badge/Kiosk-v1.0.40-informational)](https://github.com/Aron0x0/RTIPS-Release/releases)
+[![Ed25519 Signed](https://img.shields.io/badge/Release_Manifest-Ed25519_Signed-blue)](#-package-distribution)
 
 </div>
 
@@ -51,8 +52,8 @@ RTIPS is a **two-component system** designed to modernize ID card issuance in sc
 
 | Component | Package | Description |
 |---|---|---|
-| **RTIPSServer** | `RTIPSServer_*.rar` | Desktop admin application — manages records, templates, QR tokens, print queues, audit logs, and system settings. |
-| **RTIPSKiosk** | `RTIPSKiosk_*.rar` | Kiosk client application — handles student/employee authentication, photo/signature capture, ID preview, and physical printing. |
+| **RTIPSServer** | `RTIPSServer_*.zip` (Primary)<br>`RTIPSServer_*.rar` (Dual) | Desktop admin application — manages identity records, templates, QR tokens, print queues, audit logs, REST API server, and centralized PostgreSQL database. |
+| **RTIPSKiosk** | `RTIPSKiosk_*.zip` (Primary)<br>`RTIPSKiosk_*.rar` (Dual) | Thin-client kiosk application — handles student/employee authentication, photo/signature capture, ID preview, and physical printing via secure HTTPS REST API (Port 8080). Operates with zero direct database connections. |
 
 **Key capabilities:**
 - 🪪 Self-service ID printing with one-time token enforcement (no duplicate prints)
@@ -92,56 +93,60 @@ The server hosts the central database and manages administration, while kiosk te
 | Requirement | Minimum Version | Notes |
 |---|---|---|
 | **Windows** | 10 (64-bit) | Windows 11 recommended |
-| **PostgreSQL** | 16 | 17 or 18 also supported; must be running before launch |
+| **PostgreSQL** | 16 | Required **ONLY** on the server hosting `RTIPSServer`. RTIPSKiosk requires zero PostgreSQL installation or drivers. |
 | **Visual C++ Redistributable** | 2015–2022 x64 | Bundled Qt runtime requires it |
 | **Printer driver** | — | Any Windows-compatible printer for ID output |
 | **Webcam** (Kiosk only) | — | Required for photo/signature capture |
 
 > [!NOTE]
-> Both packages are **self-contained** — Qt libraries and SQL drivers are bundled inside the `.rar` archive. No separate Qt installation is needed to run the pre-built packages.
+> Both application packages are distributed as **zero-dependency `.zip` archives** that extract natively in Windows Explorer without requiring third-party tools. For bandwidth-constrained environments, high-compression `.rar` archives are provided alongside `.zip`. All necessary Qt runtime libraries, multimedia plugins, and network drivers are bundled inside each package.
 
 ---
 
 ### Quick Install (Pre-built Packages)
 
-The latest releases are listed on the [GitHub Releases page](https://github.com/Aron0x0/RTIPS-Release/releases).
+The latest verified production releases are listed on the [GitHub Releases page](https://github.com/Aron0x0/RTIPS-Release/releases).
 
-Download the correct package for your machine:
+Download the package matching your deployment role:
 
-| Package | Download | Size | SHA-256 |
-|---|---|---|---|
-| RTIPSServer v1.0.28 | [RTIPSServer_vv1.0.28-build001_2026-10-02.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-vv1.0.28/RTIPSServer_vv1.0.28-build001_2026-10-02_23-12-36.rar) | 55.31 MB | `3c28c742...` |
-| RTIPSKiosk v1.0.28 | [RTIPSKiosk_v1.0.28-build001_2026-09-24.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.28/RTIPSKiosk_v1.0.28-build001_2026-09-24_19-01-15.rar) | 89.83 MB | `ab075484...` |
+| Component | Package Format | Download | Size | SHA-256 |
+|---|---|---|---|---|
+| **RTIPSServer v1.0.40** (Admin) | **ZIP (Primary)** | [RTIPSServer_v1.0.40-build002.zip](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build002_2026-11-22_09-14-45.zip) | 75.92 MB | `3a9deb259a3f5c86fe9d826bb6f9d626a8aaf6664f47dda647b53e4370bd52bf` |
+| RTIPSServer v1.0.40 (Admin) | RAR (Dual) | [RTIPSServer_v1.0.40-build002.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build002_2026-11-22_09-14-45.rar) | 60.00 MB | `7ae286deb047169579e4ca6af4aaad8e6695c46ef950b239e25ff3086a477da8` |
+| **RTIPSKiosk v1.0.40** (Client) | **ZIP (Primary)** | [RTIPSKiosk_v1.0.40-build002.zip](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build002_2026-11-22_09-15-53.zip) | 88.61 MB | `f716982110524d61b95530fd066f3fbdf242e92c4b19b3bbf82f56215c5bdb8d` |
+| RTIPSKiosk v1.0.40 (Client) | RAR (Dual) | [RTIPSKiosk_v1.0.40-build002.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build002_2026-11-22_09-15-53.rar) | 76.85 MB | `ba6b50f75d4086d5bda77ea8ac634cd4f28ffea318a4f07dc8ff633c07badc1e` |
 
 ---
 
 ### RTIPSServer (Admin)
 
-1. Download `RTIPSServer_*.rar` from the releases page.
-2. Extract the archive to a permanent location, e.g.:
+1. Download `RTIPSServer_v1.0.40-*.zip` (or `.rar`) from the releases page.
+2. Extract the archive into a permanent directory, e.g.:
    ```
    C:\RTIPS\Server\
    ```
 3. Open the extracted folder. You should see:
    ```
    RTIPSAdmin.exe
+   UpdateHelper.exe
+   config.ini
    data\
    sqldrivers\
    *.dll   (Qt and PostgreSQL runtime libraries)
    ```
-4. Make sure **PostgreSQL is running** and you have created a database for RTIPS (see [Database Setup](#database-setup)).
+4. Ensure **PostgreSQL is running** and you have created a database for RTIPS (see [Database Setup](#database-setup)).
 5. Launch `RTIPSAdmin.exe`.
-6. On first run, the **Database Setup** screen will appear — enter your PostgreSQL connection details.
+6. On first run, the **Database Setup** screen appears — enter your PostgreSQL connection credentials.
 
 > [!IMPORTANT]
-> Do **not** move `RTIPSAdmin.exe` out of its extracted folder. The application expects its DLLs and `data/` subdirectory to be in the same directory.
+> Do **not** move `RTIPSAdmin.exe` out of its extracted directory. The application requires its companion DLLs, `sqldrivers/`, and `data/` subdirectories to reside in the application directory.
 
 ---
 
 ### RTIPSKiosk (Client)
 
-1. Download `RTIPSKiosk_*.rar` from the releases page.
-2. Extract to a permanent location, e.g.:
+1. Download `RTIPSKiosk_v1.0.40-*.zip` (or `.rar`) from the releases page.
+2. Extract the archive into a permanent directory, e.g.:
    ```
    C:\RTIPS\Kiosk\
    ```
@@ -149,27 +154,33 @@ Download the correct package for your machine:
    ```
    RTIPSKiosk.exe
    UpdateHelper.exe
+   config.ini
    data\
-   sqldrivers\
    *.dll
    ```
 4. Launch `RTIPSKiosk.exe`.
-5. On first run, enter the same PostgreSQL connection details as configured in RTIPSServer.
+5. On first run, enter the **HTTPS Server Connection** details:
+   - **Server Host / IP:** IP address or hostname of the machine running `RTIPSServer` (e.g. `192.168.1.100` or `rtips.internal`).
+   - **HTTPS Port:** `8080` (default RTIPS REST API port).
+   - **Kiosk Token:** Kiosk API token generated in RTIPSAdmin (`Settings → Kiosk Terminals`).
+
+> [!IMPORTANT]
+> `RTIPSKiosk` is an isolated thin client that communicates exclusively via the encrypted HTTPS REST API on Port 8080. It **never** connects directly to PostgreSQL, requires zero PostgreSQL client drivers, and requires no database credentials on the kiosk terminal.
 
 > [!TIP]
-> For a dedicated kiosk machine, configure Windows to auto-launch `RTIPSKiosk.exe` at startup via **Task Scheduler** or placing a shortcut in the `Shell:Startup` folder.
+> For a dedicated unattended kiosk, configure Windows to launch `RTIPSKiosk.exe` on startup using **Task Scheduler** or a shortcut in `shell:startup`.
 
 ---
 
 ## ⚙️ Setup
 
-### Database Setup
+### Database Setup (Server Host Only)
 
-RTIPS uses **PostgreSQL** as its centralized database. Both applications must connect to the same PostgreSQL instance.
+RTIPS uses **PostgreSQL** (version 16, 17, or 18) as its centralized database. Database configuration is performed **strictly on the server machine running RTIPSServer**. Kiosks do not connect to the database.
 
 #### 1. Create the database
 
-Open a PostgreSQL shell (`psql`) as a superuser and run:
+Open a PostgreSQL administrative shell (`psql`) as a superuser and run:
 
 ```sql
 CREATE DATABASE rtips;
@@ -177,68 +188,94 @@ CREATE USER rtips_user WITH PASSWORD 'your_secure_password';
 GRANT ALL PRIVILEGES ON DATABASE rtips TO rtips_user;
 ```
 
-#### 2. Schema initialization
+#### 2. Schema initialization and automatic migration
 
-RTIPS automatically creates all required tables on first run. No manual SQL migration is needed. The auto-created schema includes:
+`RTIPSServer` automatically initializes all required tables and runs schema migrations on first launch. No manual SQL script execution is required. The managed schema includes:
 
 | Table | Purpose |
 |---|---|
-| `admins` | Admin and faculty login accounts |
-| `students` | Student identity records |
+| `admins` | Admin and faculty login accounts with Argon2id / bcrypt credentials |
+| `students` | Student identity records with granular PII controls |
 | `employees` | Employee identity records |
-| `addresses` | Shared address records |
-| `courses` / `sections` | Academic classification |
+| `addresses` | Shared student and employee residential addresses |
+| `courses` / `sections` | Academic classification entities |
 | `emergency_contacts` | Guardian / emergency contact data |
-| `qr_tokens` | One-time QR authentication tokens |
-| `print_requests` | Print job requests and status |
-| `id_cards` | Issued card records (`is_printed`, `printed_date`, `expiration_date`) |
-| `print_logs` | Audit log of every print event |
-| `settings` | System-wide configuration key/values |
-| `id_templates` | Custom ID card template definitions |
+| `qr_tokens` | Single-use cryptographic QR authentication tokens |
+| `print_requests` | Active and historical print requests |
+| `id_cards` | Issued card status (`is_printed`, `printed_date`, `expiration_date`) |
+| `print_logs` | Immutable audit log of every print event |
+| `settings` | System-wide configuration key/value pairs |
+| `id_templates` | ID card template canvas definitions |
+| `schema_migrations` | Database schema version and migration journal |
 
-#### 3. Connection string reference
+#### 3. Server database connection parameters
 
-Both apps present a GUI setup screen on first launch. Typical values:
+On first launch, `RTIPSAdmin.exe` prompts with the Database Setup dialog:
 
-| Field | Example |
-|---|---|
-| Host | `localhost` or IP of your PostgreSQL server |
-| Port | `5432` |
-| Database | `rtips` |
-| Username | `rtips_user` |
-| Password | `your_secure_password` |
+| Field | Example | Notes |
+|---|---|---|
+| Host | `localhost` or `127.0.0.1` | Local PostgreSQL instance |
+| Port | `5432` | Standard PostgreSQL port |
+| Database | `rtips` | Database created in Step 1 |
+| Username | `rtips_user` | Application user |
+| Password | `your_secure_password` | User password |
 
 ---
 
 ### First-Run Configuration
 
-After connecting to the database, complete the following in **RTIPSAdmin**:
+After connecting the database, perform the initial setup in **RTIPSAdmin**:
 
-1. **Create the first admin account** — prompted automatically on first launch.
-2. **Configure school/organization info** — go to **Settings → Organization**.
-3. **Set up ID card templates** — go to **ID Management → Templates** and design or import a template for students, employees, and admins.
-4. **Issue QR tokens** — go to **User Directory → [Student/Employee] → Issue QR Token** to generate a one-time login token for each user.
-5. **Test a kiosk login** — launch `RTIPSKiosk.exe`, scan a QR token, and verify the ID preview and print flow.
+1. **Create the first administrator account** — prompted automatically on initial startup.
+2. **Configure institution info** — go to **Settings → Organization** to configure institution name and campus branding.
+3. **Configure ID templates** — go to **ID Management → Templates** to customize card layouts for students and staff.
+4. **Configure Kiosk Terminals** — go to **Settings → Kiosk Terminals** to register kiosk identifiers and generate API tokens.
+5. **Issue QR tokens** — navigate to **User Directory → Student/Employee → Issue QR Token** to generate authentication tokens.
 
 ---
 
-### Network Configuration
+### Network & Firewall Configuration
 
-If the kiosk machine is on a **separate device** from the PostgreSQL server:
+RTIPS uses a **zero-trust, thin-client architecture**:
 
-1. Allow inbound connections on PostgreSQL's port (default: `5432`) in **Windows Firewall**.
-2. Edit `pg_hba.conf` on the PostgreSQL server to allow the kiosk machine's IP:
-   ```
-   host    rtips    rtips_user    192.168.1.0/24    scram-sha-256
-   ```
-3. In `postgresql.conf`, set:
-   ```
-   listen_addresses = '*'
-   ```
-4. Restart the PostgreSQL service.
+```
+┌───────────────────────────────────────┐
+│           SERVER HOST                 │
+│                                       │
+│   PostgreSQL Port 5432 (Localhost)    │
+│            ▲                          │
+│            │ (local socket / 127.0.0.1)│
+│            ▼                          │
+│     RTIPSServer REST Engine           │
+│     (Listening on Port 8080 HTTPS)    │
+└──────────────────┬────────────────────┘
+                   │
+                   │ Inbound HTTPS (Port 8080 only)
+                   ▼
+       [ Windows Firewall Rule ]
+                   │
+                   │ Encrypted TLS REST Traffic
+                   ▼
+┌───────────────────────────────────────┐
+│           KIOSK TERMINAL              │
+│                                       │
+│       RTIPSKiosk Client               │
+│   (No PostgreSQL drivers/access)      │
+└───────────────────────────────────────┘
+```
 
-> [!WARNING]
-> Never expose the PostgreSQL port directly to the public internet. Use a private LAN or VPN between the server and kiosk machines.
+#### Firewall Rules (Server Machine):
+1. **Allow Inbound TCP Port 8080** for HTTPS REST API:
+   ```powershell
+   New-NetFirewallRule -DisplayName "RTIPS Server HTTPS API" -Direction Inbound -LocalPort 8080 -Protocol TCP -Action Allow
+   ```
+2. **DO NOT expose PostgreSQL Port 5432 to the local network or internet.** Keep PostgreSQL listening on `localhost` (`127.0.0.1`) only. RTIPSKiosk never requires port 5432 access.
+
+#### Kiosk HTTPS Connection:
+In `RTIPSKiosk.exe`, configure:
+- **Server URL:** `https://<server-ip>:8080` (e.g. `https://192.168.1.100:8080`)
+- **API Token:** Pre-shared kiosk authentication token generated in RTIPSAdmin
+- **TLS Trust:** Self-signed certificates generated by RTIPSServer can be trusted by importing `server.crt` into the kiosk's trusted root store or placing it beside `RTIPSKiosk.exe`.
 
 ---
 
@@ -311,56 +348,67 @@ windeployqt --qmldir ui build\RTIPSKiosk.exe
 
 ### Release Manifest
 
-Each release folder (`release/server/` and `release/client/`) contains a `manifest.json` describing the artifact:
+Each release folder (`release/server/` and `release/client/`) contains a cryptographically signed `manifest.json` describing the artifact:
 
 ```jsonc
-// release/server/manifest.json
+// release/server/manifest.json (v1.0.40 Build 002)
 {
   "product":      "RTIPSServer",
   "version":      "1.0.40",
-  "build":        1,
-  "buildString":  "001",
+  "build":        2,
+  "buildString":  "002",
   "releaseTag":   "RTIPSServer-v1.0.40",
-  "fileName":     "RTIPSServer_v1.0.40-build001_2026-10-28_23-39-46.rar",
+  "fileName":     "RTIPSServer_v1.0.40-build002_2026-11-22_09-14-45.zip",
   "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/...",
-  "sha256":       "8963decf86aa5e55315f39937d259b0a0b58ffa238ec5dc7b5922ad75c621917",
-  "signature":    "996ca8253a0c0d4279b3e19e76dbed9fd8913f10...0605f2149446e800",
-  "sizeBytes":    62520994,
-  "sizeMB":       59.62,
-  "publishedAt":  "2026-10-28T23:39:56+08:00"
+  "sha256":       "3a9deb259a3f5c86fe9d826bb6f9d626a8aaf6664f47dda647b53e4370bd52bf",
+  "sizeBytes":    79607525,
+  "sizeMB":       75.92,
+  "sourceBranch": "feature/admin",
+  "sourceCommit": "a84534ad7ea0c14097f2938acc4c70b41381c71a",
+  "signature":    "bcc44bdbd08087a5888686485dc9e49750efca307c4477bcd1e3dcb1345305d025308f6ce0732a5aeaca212ed627cd9460e79f8d378ceedbe585beec45f32303",
+  "dualPackage": {
+    "fileName":    "RTIPSServer_v1.0.40-build002_2026-11-22_09-14-45.rar",
+    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/...",
+    "sha256":      "7ae286deb047169579e4ca6af4aaad8e6695c46ef950b239e25ff3086a477da8",
+    "sizeBytes":   62916009
+  }
 }
 ```
 
-The manifest is consumed by the **auto-update mechanism** in both applications to detect and download new releases. Manifest authenticity is strictly verified using RFC 8032 Ed25519 digital signatures.
+#### Cryptographic Signature Verification
+All manifests are digitally signed using Ed25519 asymmetric cryptography. You can verify manifest authenticity before deployment using `SignManifest.exe`:
+```powershell
+.\SignManifest.exe -v -m release\server\manifest.json
+```
+The signer verifies against the official production public key:
+`f896be5f26a872a23a455af9ac79d51557eac628dbb7417b1a56fffec1f12c0b`
 
 ---
 
 ### Versioning Scheme
 
-RTIPS follows **Semantic Versioning** (`MAJOR.MINOR.PATCH`) with an additional build counter:
+RTIPS follows **Semantic Versioning** (`MAJOR.MINOR.PATCH`) with an automated monotonic build counter:
 
 ```
-v1.0.28-build001
- │ │  │       └── Build number within the same version (001, 002, ...)
- │ │  └────────── Patch — bug fixes and small improvements
- │ └───────────── Minor — new features, backward-compatible
- └─────────────── Major — breaking changes or major redesigns
+v1.0.40-build002
+ │ │  │       └── Build counter within the release (001, 002, ...)
+ │ │  └────────── Patch — security hardening, database migrations, bug fixes
+ │ └───────────── Minor — feature additions, backward-compatible API improvements
+ └─────────────── Major — breaking changes or architectural redesigns
 ```
 
 ---
 
 ### Auto-Update Mechanism
 
-RTIPSKiosk ships an `UpdateHelper.exe` companion process. On startup, the kiosk checks the `manifest.json` hosted in this repository for a newer version. If found:
+Both applications integrate an automated updater powered by `UpdateHelper.exe`. On startup, the application queries the remote `manifest.json`. If a new version exists:
 
-1. The user sees an **"Update Available"** notification banner.
-2. Clicking **Update** invokes `UpdateHelper.exe`, which:
-   - Downloads the new `.rar` package.
-   - Verifies the SHA-256 checksum.
-   - Extracts and replaces the old files.
-   - Restarts the application.
-
-To host your own update endpoint, fork this repository and update the `downloadUrl` field in `manifest.json` to point to your server.
+1. The user sees an **"Update Available"** banner.
+2. Clicking **Update** activates `UpdateHelper.exe`, which:
+   - Downloads the primary `.zip` (or `.rar`) archive.
+   - Cryptographically verifies the Ed25519 signature of the manifest.
+   - Validates the SHA-256 payload checksum.
+   - Performs atomic file replacement and restarts the application.
 
 ---
 
@@ -380,55 +428,62 @@ To host your own update endpoint, fork this repository and update the `downloadU
 | Path | Module |
 |---|---|
 | `backend/services/KioskService.*` | Core business logic — student/employee CRUD, print management, QR tokens |
-| `backend/data/DatabaseManager.*` | Schema creation, migration, and connection pool |
+| `backend/data/DatabaseManager.*` | PostgreSQL / SQLite connection pool, schema migrations, and backup/restore |
+| `backend/services/HttpApiServer.*` | Thread-pool HTTPS REST API server for kiosk client requests |
+| `backend/services/SessionManager.*` | Admin token lifecycle and session validation |
 | `ui/pages/UserDirectory.qml` | Add/edit students and employees |
 | `ui/pages/IDManagement.qml` | ID template designer and assignment |
 | `ui/pages/PrintQueue.qml` | Monitor active print jobs |
-| `ui/components/InputField.qml` | Reusable validated input component |
-| `tools/` | Import utilities (CSV batch import) |
+| `tools/` | Standalone release signer (`SignManifest`) and import utilities |
 
 #### RTIPSKiosk (Client) — Source Modules
 
 | Path | Module |
 |---|---|
-| `backend/services/KioskService.*` | Authentication, print marking, `id_cards` upsert |
-| `ui/pages/ClientLogin.qml` | QR scan + PIN login screen |
-| `ui/pages/ClientInformationPreview.qml` | ID card preview and print trigger |
-| `ui/pages/MediaCapturePhoto.qml` | Live webcam photo capture |
-| `ui/pages/MediaCaptureSignature.qml` | Digital signature pad |
-| `ui/pages/DatabaseSetup.qml` | First-run database configuration |
-| `IdData/` | Shared ID card data model library |
-| `UpdateHelper/` | Auto-update extraction helper |
+| `backend/services/KioskService.*` | Thin-client REST adapter for server HTTPS API |
+| `backend/printing/CardPrintService.*`| Direct card printer hardware interface |
+| `backend/qr/QrScanner.*` | Webcam ZXing QR code detection engine |
+| `ui/pages/ClientLogin.qml` | QR scan and PIN authentication UI |
+| `ui/pages/ClientInformationPreview.qml`| Real-time ID card preview |
+| `UpdateHelper/` | Companion auto-updater process |
 
 ---
 
 ## 🔧 Troubleshooting
 
-### Application won't start — missing DLL
+### RTIPSServer: Missing PostgreSQL DLLs
 
-**Symptom:** `The program can't start because libpq.dll is missing`
+**Symptom:** `The program can't start because libpq.dll was not found.`
 
-**Fix:** Copy the PostgreSQL runtime DLLs from your PostgreSQL installation's `bin/` directory into the same folder as `RTIPSAdmin.exe` / `RTIPSKiosk.exe`:
+**Fix:** Ensure PostgreSQL `bin/` directory is in the system PATH, or copy runtime libraries into the same directory as `RTIPSAdmin.exe`:
 ```
-libpq.dll
-libssl-*.dll
-libcrypto-*.dll
+libpq.dll, libssl-*.dll, libcrypto-*.dll
 ```
-These are located at `C:\Program Files\PostgreSQL\<version>\bin\`.
 
 ---
 
-### Cannot connect to database
+### RTIPSServer: Cannot connect to PostgreSQL
 
-**Symptom:** "Connection refused" or "could not connect to server" on the setup screen.
+**Symptom:** "Connection refused" or "could not connect to server" during Database Setup.
 
 **Checklist:**
-- [ ] PostgreSQL service is running (`services.msc` → `postgresql-x64-*` → **Started**)
-- [ ] Host and port are correct (`localhost` / `5432` by default)
-- [ ] The database `rtips` exists (`psql -U postgres -l`)
-- [ ] The user has `CONNECT` privileges
-- [ ] `pg_hba.conf` allows the connecting IP
-- [ ] Windows Firewall allows port `5432` (for cross-machine setups)
+- [ ] PostgreSQL service is running (`services.msc` → `postgresql-x64-*` → **Running**)
+- [ ] Host is `127.0.0.1` or `localhost` and Port is `5432`
+- [ ] Target database `rtips` exists (`psql -U postgres -c "CREATE DATABASE rtips;"`)
+- [ ] User credentials match configured values in `config.ini`
+
+---
+
+### RTIPSKiosk: Cannot connect to RTIPSServer
+
+**Symptom:** Kiosk displays "Server Unreachable" or "TLS Handshake Failed".
+
+**Checklist:**
+- [ ] `RTIPSAdmin.exe` is running on the host machine and the REST API server is active
+- [ ] Server machine's Windows Firewall allows inbound TCP traffic on **Port 8080**
+- [ ] Kiosk is configured with `https://<server-ip>:8080` (ensure `https://` is included)
+- [ ] Kiosk API token entered in the kiosk setup matches the token generated in RTIPSAdmin (`Settings → Kiosk Terminals`)
+- [ ] If using self-signed TLS certificates, place `server.crt` in the `RTIPSKiosk.exe` application directory or install into Windows Trusted Root Certification Authorities
 
 ---
 
