@@ -111,10 +111,10 @@ Download the package matching your deployment role:
 
 | Component | Package Format | Download | Size | SHA-256 |
 |---|---|---|---|---|
-| **RTIPSServer v1.0.40** (Admin) | **ZIP (Primary)** | [RTIPSServer_v1.0.40-build012.zip](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build012_2026-11-22_21-56-52.zip) | 76.21 MB | `a9164680a97f84baaab4832470036747227da0780554f62c24266b9eb946fc76` |
-| RTIPSServer v1.0.40 (Admin) | RAR (Dual) | [RTIPSServer_v1.0.40-build012.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build012_2026-11-22_21-56-52.rar) | 60.21 MB | `7a3de5951d28611b05349ee7e9edc1f6aeb5bc62bf4b088559415515d23807fe` |
-| **RTIPSKiosk v1.0.40** (Client) | **ZIP (Primary)** | [RTIPSKiosk_v1.0.40-build006.zip](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build006_2026-11-22_21-58-16.zip) | 88.62 MB | `b5c47730aab06a057aa60278945f346a38f198099bfaebbf9ff75887d4f5d0f8` |
-| RTIPSKiosk v1.0.40 (Client) | RAR (Dual) | [RTIPSKiosk_v1.0.40-build006.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build006_2026-11-22_21-58-16.rar) | 76.85 MB | `a09abb717c9af6077555c5738ca4f91c1305522637e9bc5a0ecae27a825d7242` |
+| **RTIPSServer v1.0.40** (Admin) | **ZIP (Primary)** | [RTIPSServer_v1.0.40-build013.zip](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build013_2026-11-22_22-15-57.zip) | 76.21 MB | `9b30e8ef26a037e029890389c36680632eb4e4963c357f406f2d2b7b7e4dde10` |
+| RTIPSServer v1.0.40 (Admin) | RAR (Dual) | [RTIPSServer_v1.0.40-build013.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build013_2026-11-22_22-15-57.rar) | 60.22 MB | `f0a8275a5a5198542a4247b4004e384117377219a109bc002b7547df99064efb` |
+| **RTIPSKiosk v1.0.40** (Client) | **ZIP (Primary)** | [RTIPSKiosk_v1.0.40-build007.zip](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build007_2026-11-22_22-17-45.zip) | 88.62 MB | `307123605f65679f0b1140fd15d0e3ff2504581c1d25543b27014be8b4da9860` |
+| RTIPSKiosk v1.0.40 (Client) | RAR (Dual) | [RTIPSKiosk_v1.0.40-build007.rar](https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build007_2026-11-22_22-17-45.rar) | 76.85 MB | `ca9d035ad33eb329833222aa820b6e37dcbdd14b1c6f4d441024baa0452735f1` |
 
 ---
 
@@ -351,26 +351,26 @@ windeployqt --qmldir ui build\RTIPSKiosk.exe
 Each release folder (`release/server/` and `release/client/`) contains a cryptographically signed `manifest.json` describing the artifact:
 
 ```jsonc
-// release/server/manifest.json (v1.0.40 Build 012)
+// release/server/manifest.json (v1.0.40 Build 013)
 {
   "product":      "RTIPSServer",
   "version":      "1.0.40",
-  "build":        12,
-  "buildString":  "012",
+  "build":        13,
+  "buildString":  "013",
   "releaseTag":   "RTIPSServer-v1.0.40",
-  "fileName":     "RTIPSServer_v1.0.40-build012_2026-11-22_21-56-52.zip",
-  "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build012_2026-11-22_21-56-52.zip",
-  "sha256":       "a9164680a97f84baaab4832470036747227da0780554f62c24266b9eb946fc76",
-  "sizeBytes":    79911057,
+  "fileName":     "RTIPSServer_v1.0.40-build013_2026-11-22_22-15-57.zip",
+  "downloadUrl":  "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build013_2026-11-22_22-15-57.zip",
+  "sha256":       "9b30e8ef26a037e029890389c36680632eb4e4963c357f406f2d2b7b7e4dde10",
+  "sizeBytes":    79914370,
   "sizeMB":       76.21,
   "sourceBranch": "feature/admin",
-  "sourceCommit": "615aa9936f80edcb467f0226219970c140d818de",
-  "signature":    "12d8661347ee3737...a49fb69dd4f0020b",
+  "sourceCommit": "17c2575241ab11ea6a358422017e65f8acab6921",
+  "signature":    "d448d1d7e9d3bd81...7841a74134d4e3507759f603",
   "dualPackage": {
-    "fileName":    "RTIPSServer_v1.0.40-build012_2026-11-22_21-56-52.rar",
-    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build012_2026-11-22_21-56-52.rar",
-    "sha256":      "7a3de5951d28611b05349ee7e9edc1f6aeb5bc62bf4b088559415515d23807fe",
-    "sizeBytes":   63139952
+    "fileName":    "RTIPSServer_v1.0.40-build013_2026-11-22_22-15-57.rar",
+    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSServer-v1.0.40/RTIPSServer_v1.0.40-build013_2026-11-22_22-15-57.rar",
+    "sha256":      "f0a8275a5a5198542a4247b4004e384117377219a109bc002b7547df99064efb",
+    "sizeBytes":   63145155
   }
 }
 ```

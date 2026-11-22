@@ -1,23 +1,23 @@
 {
-    "build": 6,
-    "buildString": "006",
-    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build006_2026-11-22_21-58-16.zip",
+    "build": 7,
+    "buildString": "007",
+    "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build007_2026-11-22_22-17-45.zip",
     "dualPackage": {
-        "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build006_2026-11-22_21-58-16.rar",
-        "fileName": "RTIPSKiosk_v1.0.40-build006_2026-11-22_21-58-16.rar",
-        "sha256": "a09abb717c9af6077555c5738ca4f91c1305522637e9bc5a0ecae27a825d7242",
-        "sizeBytes": 80579603
+        "downloadUrl": "https://github.com/Aron0x0/RTIPS-Release/releases/download/RTIPSKiosk-v1.0.40/RTIPSKiosk_v1.0.40-build007_2026-11-22_22-17-45.rar",
+        "fileName": "RTIPSKiosk_v1.0.40-build007_2026-11-22_22-17-45.rar",
+        "sha256": "ca9d035ad33eb329833222aa820b6e37dcbdd14b1c6f4d441024baa0452735f1",
+        "sizeBytes": 80581350
     },
-    "fileName": "RTIPSKiosk_v1.0.40-build006_2026-11-22_21-58-16.zip",
+    "fileName": "RTIPSKiosk_v1.0.40-build007_2026-11-22_22-17-45.zip",
     "product": "RTIPSKiosk",
-    "publishedAt": "2026-11-22T21:58:48+08:00",
+    "publishedAt": "2026-11-22T22:18:14+08:00",
     "releaseTag": "RTIPSKiosk-v1.0.40",
-    "sha256": "b5c47730aab06a057aa60278945f346a38f198099bfaebbf9ff75887d4f5d0f8",
-    "signature": "a2eb8b1fca8b255a29c36f2f59166197be494cef3b6d7e71781a2f5d8ef3f5a69110a5e3800789e1d5b75bf276224af7c06b1da300bb5fc92f013918d41ebd02",
-    "sizeBytes": 92920770,
+    "sha256": "307123605f65679f0b1140fd15d0e3ff2504581c1d25543b27014be8b4da9860",
+    "signature": "f5e18e4eaf21758cab946b869337e3f3444ae6685ceb9c430d51a889787784b92de5f41158e2e2cdb35e882011913e30346bce9dae4f219b485f7a1b40a0c909",
+    "sizeBytes": 92923909,
     "sizeMB": 88.62,
     "sourceBranch": "feature/client",
-    "sourceCommit": "069a7e0cac53c5054ccb5a343ef744fdd2ef5171",
+    "sourceCommit": "3af904ee89c814d18704ab2924ab22da0fe8e0eb",
     "version": "1.0.40",
     "versionTag": "v1.0.40"
 }
